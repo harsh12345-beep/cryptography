@@ -1,0 +1,57 @@
+{% load static %}
+<div class="boss">
+<div class="abc">
+  <div class="owl-slider">
+   
+    <div id="carousel" class="owl-carousel">
+      {% for item in slide %}
+      <div class="item">
+        <img src="{{item.PPProduct_image.url}}" alt="1000X1000">
+        <h5 style="text-align:center;">{{item.NNName}}</h5>
+        
+      </div>
+    
+      {% endfor %}
+     
+        
+    </div>
+    <a class="btn btn-primary" href="{% url 'collections'%}" >View More</a>
+   
+    
+</div>  
+</div>
+
+    <script>
+      jQuery("#carousel").owlCarousel({
+        autoplay: true,
+        rewind: true, /* use rewind if you don't want loop */
+        margin: 20,
+         /*
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        */
+        responsiveClass: true,
+        autoHeight: true,
+        autoplayTimeout: 7000,
+        smartSpeed: 800,
+        nav: true,
+        responsive: {
+          0: {
+            items: 1
+          },
+      
+          600: {
+            items: 3
+          },
+      
+          1024: {
+            items: 4
+          },
+      
+          1366: {
+            items: 4
+          }
+        }
+      });
+    </script>
+

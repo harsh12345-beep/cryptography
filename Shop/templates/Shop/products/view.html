@@ -1,0 +1,98 @@
+{% extends 'Shop/layouts/main.html' %}
+
+{% block content %}
+
+<div class="py-3 bg-primary">
+    <div class="container">
+        <a  class="text-white"   href=" {% url 'Index' %}">Home /</a>
+        <a  class="text-white"   href=" {% url 'collections' %}">Collections /</a>
+        <a  class="text-white"   href=" {% url 'collectionsview' products.category.slug %}">{{ products.category.name }} /</a>
+        <a  class="text-white"   href=" {% url 'productview' products.category.slug products.slug %}">{{ products.name }}</a>
+        
+    </div>
+
+
+</div>   
+
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow ">
+                    <div class="card-body product_data ">
+                        <div class="row ">
+                            <div class="col-md-4 ">
+                                
+                                    <img src="{{products.product_image.url}}" class="w-100"   alt="image" style="width:70%;">
+                                </div>
+                            <div class="col-md-8">   
+                                <h2 class="mb-0">
+                                    {{products.name}}
+                                    {% if products.trending %}
+                                        <label style="font-size: 16px; background-color:red; color:#fff; text-align:reight;" class="float-end badge bg=danger trending_tag">Trending</label>
+                                    {% endif %}  
+                                </h2>
+                                <hr>
+                                <label class="me-3">Original Price:<s> Stacks{{products.orignal_price | stringformat:'d'}}</s></label>
+                                <label class="fw-bold">Selling Price: Stacks {{products.selling_price | stringformat:'d'}}</label>
+                                <p class="mt-3">
+                                    {{ products.small_Description }}
+                                </p>
+                                <hr>
+                                {% if products.quantity > 0 %}
+                                    <label class="badge bg-success">In Stock</label>
+                                {% else %}
+                                    <label class="badge bg-danger">Out of Stoch</label>
+                                {% endif %}
+                                <div class="row mt-2">
+                                    <div class="col-md-3">
+                                    {% csrf_token %}
+                                        <input type="hidden"  value="{{ products.id }}" class="product_id" >
+                                        <label for="Quantity">Quantity</label>
+                                        <div class="input-group text-center mb-3" style:"width-130px;">
+                                          <button  class="input-group-text decrement-btn">-</button>
+                                          <input type="text" name="quantity" class="form-control qty-input text-center" value="1" >
+                                          <button  class="input-group-text increment-btn">+</button>
+                                          </div> 
+                                        </div>
+                        </div>
+                    
+            
+                          <div class="col-md-9">
+                              <br/>
+                             
+                                  <button  type="button" class="btn btn-primary me-3 float-start addToCartBtn">Add to cart <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+                                    <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                                  </svg></button>
+                             
+                             
+                              </svg></button>
+                        </div>
+                      
+                </div>
+            
+            
+            </div>
+
+              <div class="col-md-12">
+                <hr>
+                <h3>Description</h3>
+                <p class="mt-3 ">
+                    {{ products.Description }}
+                </p>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% endblock content %}
+
+

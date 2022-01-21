@@ -1,0 +1,87 @@
+{% extends 'Shop/layouts/main.html' %}
+
+{% block content %}
+
+
+<div class="container">
+  <div cass="row ">
+      <div class="col-md-6">
+          <div class="">
+              <div class="card mt-3 shadow">
+                  <div class="card-body">
+                      <form action="" method="POST">
+                    {% csrf_token %}
+                          <div class="text-center">
+                              <h4>Login</h4>
+                          </div>
+                          <hr>
+                          <div class="forms-group">
+                              <label for="">Username :</label>
+                              <input type="text" class="form-control" name="name" placeholder="Enter username">
+                          </div>
+                     
+                          <div class="forms-group">
+                              <label for="">Password :</label>
+                              <input type="text" class="form-control" name="pas" placeholder="Enter Password">
+                          </div>
+                         <br>
+                          <button type="submit" class="btn float-end shadow btn-success px-4">Login</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+ 
+</div>
+
+
+<div class="row">
+    <div class="col-md-8 mx-auto social-container my-2 order-md-1">
+        <button class="btn btn-danger mb-2">
+            <a href="{% url 'social:begin' 'facebook' %}">Login with Instagram</a>
+        </button>
+        <button class="btn btn-primary mb-2">
+            <a href="#">Login with Facebook
+            </a>
+        </button>
+        <button class="btn btn-info mb-2">
+            <a href="#">Login with LinkedIn</a>
+        </button>
+    </div>
+</div>
+<style>
+    img {
+        border: 3px solid #282c34;
+      }
+      .container-fluid {
+        height: 100vh;
+        background-color: #282c34;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container-fluid > div {
+        width: 85%;
+        min-width: 300px;
+        max-width: 500px;
+      }
+      .card {
+        width: 100%;
+      }
+      .social-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .btn a, .btn a:hover {
+        color: white;
+        text-decoration: none ;
+
+
+      }
+
+   
+    
+</style>
+
+{% endblock content %}

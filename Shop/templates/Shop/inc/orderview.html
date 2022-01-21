@@ -1,0 +1,101 @@
+
+{% extends 'Shop/layouts/main.html' %}
+
+{% block content %}
+<div class="py-3 bg-primary">
+    <div class="container">
+        <a  class="text-white"   href=" {% url 'Index' %}">Home /</a>
+        <a  class="text-white"   href=" {% url 'myorders' %}">MyOrders</a>
+       
+    </div>
+</div>
+
+
+<div class="container mt-3">
+    <div class="row">
+      <div class="col-md-12 ">
+            <div class="card shadow checkoutform">
+                <div class="card-header">
+                    <h3>Order View</h3>
+                </div>
+                <div class="card-body">
+                    
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <h4>Shipping Details</h4>
+                            <hr>
+                            <label class="mt-2">FirstName</label>
+                            <div class="border p-1">{{order.fname}}</div>
+                            <label class="mt-2">LastName</label>
+                            <div class="border p-1">{{order.lname}}</div>
+                            <label class="mt-2">Email</label>
+                            <div class="border p-1">{{order.email}}</div>
+                            <label class="mt-2">ContactNo.</label>
+                            <div class="border p-1">{{order.phone}}</div>
+                            <label class="mt-2">Address</label>
+                            <div class="border p-1">{{order.Address}}  {{order.city}}  {{order.State}}   {{order.country}}</div>
+                           
+
+                            <label class="mt-2">PinCode</label>
+                            <div class="border p-1">{{order.pin}}</div>
+                            <label class="mt-2">AddharNo.</label>
+                            <div class="border p-1">{{order.adhar}}</div>
+                        </div>
+                        <div class="col-md-6 ">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Quantity
+                                        </th>
+                                        <th>
+                                         Price
+                                        </th>
+                                        <th>
+                                         Image
+                                        </th>
+                                 
+                                    </tr>
+                                </thead>
+                               
+                                <tbody>
+                                    
+                                   
+                                    {% for i in Orderitem %}
+                                    <tr>
+                                        <td>
+                                            {{ i.Product.name }} 
+                                        </td>
+                                        <td>
+                                            {{ i.quantity }}
+                                        </td>
+                                        <td>
+                                            {{ i.price }}
+                                        </td>
+                                        <td>
+                                        {{ i.status }}
+                                        <img src=" {{i.Product.product_image.url}}"  height="50px" width="50px" alt"Not found">
+                                        </td>
+                                      
+                                    </tr>
+                                     
+                                    {% endfor %}
+                                </tbody>
+                                
+                            </table>
+                            <h4>Grand Total :{{order.total_price}}</h4>
+                            <h6>Order Status:{{order.status}}</h6>
+                            <h6>Tracking No :{{order.tracking_no}}</h6>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>                   
+
+{% endblock content %}
